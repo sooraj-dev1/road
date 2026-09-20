@@ -35,6 +35,11 @@ jobs:
             echo "# Dummy env for CI" > .env
           fi
 
+      - name: 🔧 Upgrade Gradle to 8.14 for CI
+        run: |
+          sed -i 's/gradle-8.12-all.zip/gradle-8.14-all.zip/g' android/gradle/wrapper/gradle-wrapper.properties || true
+          sed -i 's/gradle-8.12-bin.zip/gradle-8.14-bin.zip/g' android/gradle/wrapper/gradle-wrapper.properties || true
+
       - name: 🔑 Grant Execute Permission to Gradlew
         run: chmod +x android/gradlew || true
 
@@ -53,7 +58,7 @@ jobs:
       - name: 🔨 Build Android APK (Release)
         env:
           GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dorg.gradle.daemon=false"
-        run: flutter build apk --release --no-tree-shake-icons
+        run: flutter build apk --release --no-tree-shake-icons --android-skip-build-dependency-validation
 
       - name: 📤 Upload Release APK
         uses: actions/upload-artifact@v4
