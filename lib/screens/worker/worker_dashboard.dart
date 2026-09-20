@@ -163,7 +163,7 @@ class _WorkerDashboardState extends State<WorkerDashboard> {
             child: Text(
               _selectedFilter == 'all'
                   ? 'No tasks assigned yet'
-                  : 'No ${_selectedFilter} tasks',
+                  : 'No $_selectedFilter tasks',
             ),
           );
         }

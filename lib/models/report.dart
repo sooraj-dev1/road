@@ -48,9 +48,7 @@ class Report {
       'assignedWorkerId': assignedWorkerId,
       'userId': userId,
       'timestamp': timestamp.millisecondsSinceEpoch,
-      'completedAt': completedAt != null
-          ? completedAt!.millisecondsSinceEpoch
-          : null,
+      'completedAt': completedAt?.millisecondsSinceEpoch,
     };
     // Only include imageUrl if it exists
     if (imageUrl != null && imageUrl!.isNotEmpty) {
